@@ -15,5 +15,12 @@ namespace Test.Data
         public DbSet<Student> Students { get; set; }
         public DbSet<Contact> Contacts { get; set; }
 
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<StudentContact>()
+                .HasKey(sc => new { sc.StudentId, sc.ContactId });
+        }
+
     }
 }
