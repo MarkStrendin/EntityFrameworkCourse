@@ -6,7 +6,7 @@ using Test.Domain;
 
 namespace Test.Data
 {
-    class TestProgramDatabaseContext : DbContext
+    public class TestProgramDatabaseContext : DbContext
     {
         public TestProgramDatabaseContext(DbContextOptions<TestProgramDatabaseContext> options) 
             : base(options)
