@@ -1,5 +1,10 @@
 # Standard CSharp .hgignore / .gitignore
 
+# SQLLite exporer temp files
+
+*-shm
+*-wal
+
 # Visual Studio 2015 addition
 .vs/
 
