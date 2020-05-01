@@ -28,9 +28,6 @@ namespace Test.Data.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("StudentId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
 
                     b.ToTable("Contacts");
@@ -54,6 +51,36 @@ namespace Test.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("Test.Domain.StudentContact", b =>
+                {
+                    b.Property<int>("StudentId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ContactId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("StudentId", "ContactId");
+
+                    b.HasIndex("ContactId");
+
+                    b.ToTable("StudentContact");
+                });
+
+            modelBuilder.Entity("Test.Domain.StudentContact", b =>
+                {
+                    b.HasOne("Test.Domain.Contact", "Contact")
+                        .WithMany("Students")
+                        .HasForeignKey("ContactId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Test.Domain.Student", "Student")
+                        .WithMany("Contacts")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
